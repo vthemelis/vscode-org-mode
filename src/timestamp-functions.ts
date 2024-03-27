@@ -3,9 +3,8 @@ import * as Datetime from './simple-datetime';
 import * as Utils from './utils';
 
 export function insertTimestamp(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
-    const document = Utils.getActiveTextEditorEdit();
     const cursorPos = Utils.getCursorPosition();
-    
+
     const dateObject = Datetime.currentDate();
     const dateString = Datetime.buildDateString(dateObject);
 
@@ -20,7 +19,7 @@ export function clockIn(textEditor: vscode.TextEditor, edit: vscode.TextEditorEd
     if (line.indexOf('CLOCK:') === -1) {
         edit.insert(cursorPos, 'CLOCK: ');
     }
-    
+
     insertDateTime(edit, cursorPos);
 }
 
@@ -37,7 +36,7 @@ export function clockOut(textEditor: vscode.TextEditor, edit: vscode.TextEditorE
         const range = new vscode.Range(initPos, endPos);
         edit.replace(range, '');
     }
-    edit.insert(cursorPos, separator)
+    edit.insert(cursorPos, separator);
     insertDateTime(edit, cursorPos);
 }
 
@@ -45,13 +44,13 @@ export function updateClock(textEditor: vscode.TextEditor, edit: vscode.TextEdit
     const document = Utils.getActiveTextEditorEdit();
     const cursorPos = Utils.getCursorPosition();
     const line = Utils.getLine(document, cursorPos);
-    
+
     const clockTotal = Datetime.getClockTotal(line);
     if (!clockTotal) {
         vscode.window.showErrorMessage('You need two timestamps to update the clock total.');
         return;
     }
-    
+
     const separator = Utils.getClockTotalSeparator();
     const separatorIndex = line.indexOf(separator);
     if (separatorIndex !== -1) {
@@ -60,7 +59,7 @@ export function updateClock(textEditor: vscode.TextEditor, edit: vscode.TextEdit
         const range = new vscode.Range(initPos, endPos);
         edit.replace(range, '');
     }
-    edit.insert(cursorPos, separator)
+    edit.insert(cursorPos, separator);
     edit.insert(cursorPos, clockTotal);
 }
 

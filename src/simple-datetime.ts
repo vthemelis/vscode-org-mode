@@ -1,5 +1,4 @@
 import * as datefns from 'date-fns';
-import * as vscode from 'vscode';
 import * as Utils from './utils';
 
 const weekdayArray = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -33,7 +32,7 @@ export function parseDate(dateString: string): ISimpleDate {
     }
 
     return { year, month, day, weekday };
-};
+}
 
 export function isValidSimpleDate(datetime: ISimpleDate): boolean {
     return Boolean(datetime.year) && Boolean(datetime.month) && Boolean(datetime.day);
@@ -50,8 +49,8 @@ export function buildDateString(datetime: ISimpleDate): string {
         dateString = `${dateString} ${weekday}`;
     }
 
-    return `[${dateString}]`
-};
+    return `[${dateString}]`;
+}
 
 export function buildDateTimeString(datetime: ISimpleDateTime): string {
     const { year, month, day, hours, minutes, weekday } = datetime;
@@ -67,8 +66,8 @@ export function buildDateTimeString(datetime: ISimpleDateTime): string {
     }
 
 
-    return `[${dateString} ${timeString}]`
-};
+    return `[${dateString} ${timeString}]`;
+}
 
 function padDate(str: string): string {
     const regex = /-(\d)(-|$)/;
@@ -98,7 +97,7 @@ export function dateToSimpleDate(dateObject: Date): ISimpleDate {
         month,
         weekday,
         year
-    }
+    };
 }
 
 export function dateToSimpleDateTime(dateObject: Date): ISimpleDateTime {
@@ -132,8 +131,6 @@ export function modifyDate(dateString: string, action: string): string {
 }
 
 export function getClockTotal(line) {
-    const separator = Utils.getClockTotalSeparator();
-
     const regex = /\d{1,2}:\d{1,2}/g;
     const match = line.match(regex);
 
