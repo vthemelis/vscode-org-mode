@@ -20,9 +20,10 @@ export function activate(context: vscode.ExtensionContext) {
     const demoteSubtreeCmd = vscode.commands.registerTextEditorCommand('org.demoteSubtree', SubtreeFunctions.demoteSubtree);
 
     const insertTimestampCmd = vscode.commands.registerTextEditorCommand('org.timestamp', TimestampFunctions.insertTimestamp);
-    const clockInCmd = vscode.commands.registerTextEditorCommand('org.clockin', TimestampFunctions.clockIn);
-    const clockOutCmd = vscode.commands.registerTextEditorCommand('org.clockout', TimestampFunctions.clockOut);
-    const updateClockCmd = vscode.commands.registerTextEditorCommand('org.updateclock', TimestampFunctions.updateClock);
+
+    vscode.commands.registerTextEditorCommand('org.clockin', TimestampFunctions.clockIn);
+    vscode.commands.registerTextEditorCommand('org.clockout', TimestampFunctions.clockOut);
+    vscode.commands.registerTextEditorCommand('org.updateclock', TimestampFunctions.updateClock);
 
     const incrementContextCmd = vscode.commands.registerTextEditorCommand('org.incrementContext', incrementContext);
 

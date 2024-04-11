@@ -28,7 +28,6 @@ export function insertHeadingRespectContent(textEditor: vscode.TextEditor, edit:
 }
 
 export function insertChild(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
-    const document = textEditor.document;
     const cursorPos = Utils.getCursorPosition();
     const curLine = Utils.getLine(textEditor.document, cursorPos);
     const endOfLine = curLine.length;
@@ -43,7 +42,6 @@ export function insertChild(textEditor: vscode.TextEditor, edit: vscode.TextEdit
 }
 
 export function demoteLine(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
-    const document = textEditor.document;
     const cursorPos = Utils.getCursorPosition();
     const curLine = Utils.getLine(textEditor.document, cursorPos);
     const headerPrefix = Utils.getHeaderPrefix(curLine);
@@ -54,7 +52,6 @@ export function demoteLine(textEditor: vscode.TextEditor, edit: vscode.TextEdito
 }
 
 export function promoteLine(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
-    const document = textEditor.document;
     const cursorPos = Utils.getCursorPosition();
     const curLine = Utils.getLine(textEditor.document, cursorPos);
     const headerPrefix = Utils.getHeaderPrefix(curLine);

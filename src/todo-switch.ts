@@ -1,4 +1,4 @@
-import { window, workspace } from 'vscode';
+import { window } from 'vscode';
 import { getKeywords, getUniq } from './utils';
 
 export default function (todoString: string, action: string) {

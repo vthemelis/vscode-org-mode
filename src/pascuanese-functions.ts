@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 
+ // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function butterfly(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
     const query = "Do you really want to unleash the powers of the butterfly?";
     const options = ["Yes", "No"];
@@ -15,6 +16,6 @@ export function butterfly(textEditor: vscode.TextEditor, edit: vscode.TextEditor
                   .then(() => status.hide());
             } else if (choice === "No") {
                 vscode.window.showInformationMessage(xkcd);
-            };
-        })
-};
+            }
+        });
+}

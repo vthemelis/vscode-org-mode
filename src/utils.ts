@@ -77,7 +77,7 @@ export function findBeginningOfSection(document: vscode.TextDocument, pos: vscod
         curLine--;
         curPos = new vscode.Position(curLine, 0);
         curLinePrefix = getPrefix(getLine(document, curPos));
-    } while (curLine > 0 && inSubsection(curLinePrefix, sectionRegex))
+    } while (curLine > 0 && inSubsection(curLinePrefix, sectionRegex));
 
     if (curPos) {
         curPos = new vscode.Position(curPos.line + 1, 0);
@@ -100,7 +100,7 @@ export function findEndOfSection(document: vscode.TextDocument, pos: vscode.Posi
         curLine++;
         curPos = new vscode.Position(curLine, 0);
         curLinePrefix = getPrefix(getLine(document, curPos));
-    } while (curLine < document.lineCount - 1 && inSubsection(curLinePrefix, sectionRegex))
+    } while (curLine < document.lineCount - 1 && inSubsection(curLinePrefix, sectionRegex));
 
     curPos = new vscode.Position(curPos.line - 1, getLine(document, new vscode.Position(curPos.line - 1, 0)).length + 1);
 
@@ -126,7 +126,7 @@ export function findEndOfContent(document: vscode.TextDocument, pos: vscode.Posi
         curLine++;
         curPos = new vscode.Position(curLine, 0);
         curLinePrefix = getPrefix(getLine(document, curPos));
-    } while (curLine < document.lineCount - 1 && inSubsection(curLinePrefix, sectionRegex))
+    } while (curLine < document.lineCount - 1 && inSubsection(curLinePrefix, sectionRegex));
 
 
     return (curLine !== document.lineCount - 1) ? new vscode.Position(curPos.line - 1, getLine(document, new vscode.Position(curPos.line - 1, 0)).length + 1) :
@@ -169,7 +169,7 @@ export function getSectionRegex(prefix: string) {
  */
 export function getStarPrefixCount(prefix: string) {
     let currentLevel = -1;
-    while (prefix[++currentLevel] === '*') { ; }
+    while (prefix[++currentLevel] === '*') { continue; }
     return currentLevel;
 }
 
@@ -184,9 +184,7 @@ export function surroundWithText(textEditor: vscode.TextEditor, edit: vscode.Tex
 }
 
 export function prependTextToLine(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, prependingText: string) {
-    const document = getActiveTextEditorEdit();
     const cursorPos = getCursorPosition();
-    const curLine = getLine(document, cursorPos);
 
     const insertPos = new vscode.Position(cursorPos.line, 0);
     edit.insert(insertPos, prependingText);

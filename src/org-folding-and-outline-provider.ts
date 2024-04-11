@@ -27,11 +27,13 @@ export class OrgFoldingAndOutlineProvider implements FoldingRangeProvider, Docum
         this.documentStateRegistry = new WeakMap();
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public provideFoldingRanges(document: TextDocument, token: CancellationToken): ProviderResult<FoldingRange[]> {
         const state = this.getOrCreateDocumentState(document);
         return state.getRanges(document);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public provideDocumentSymbols(document: TextDocument, token: CancellationToken): ProviderResult<SymbolInformation[]> {
         const state = this.getOrCreateDocumentState(document);
         return state.getSymbols(document);

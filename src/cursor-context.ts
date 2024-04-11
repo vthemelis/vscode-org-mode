@@ -4,9 +4,7 @@ import {
     Range,
     TextEditor,
     TextEditorEdit,
-    workspace
 } from "vscode";
-import * as Datetime from './simple-datetime';
 import * as Util from './utils';
 
 // Any potential data labels should go here
@@ -20,6 +18,7 @@ interface IContextData {
     range: Range
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function getCursorContext(textEditor: TextEditor, edit: TextEditorEdit): IContextData {
     const document = Util.getActiveTextEditorEdit();
     const cursorPos = Util.getCursorPosition();
@@ -62,7 +61,7 @@ function getTimestampContext(match: RegExpExecArray, cursorPos: Position): ICont
             dataLabel: DATE,
             line,
             range
-        }
+        };
     }
 
     // Should return undefined if no match contains the cursor
@@ -71,7 +70,6 @@ function getTimestampContext(match: RegExpExecArray, cursorPos: Position): ICont
 function getTodoContext(match: RegExpExecArray, cursorPos: Position): IContextData {
     const line = cursorPos.line;
 
-    const prefix = match[1];
     const todoWord = match[2];
 
     const start = match.index + match[1].length;
@@ -85,5 +83,5 @@ function getTodoContext(match: RegExpExecArray, cursorPos: Position): IContextDa
         dataLabel: TODO,
         line,
         range
-    }
+    };
 }
